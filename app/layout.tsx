@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import Header from "@/app/components/Header";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -18,8 +18,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "SweetCake - Pesan Kue Online",
-  description:
-    "Pesan kue terbaik secara online dan ambil di toko kami. Pilihan kue premium untuk setiap momen spesial Anda.",
+  description: "Pesan kue terbaik secara online dan ambil di toko kami. Pilihan kue premium untuk setiap momen spesial Anda.",
 };
 
 export default function RootLayout({

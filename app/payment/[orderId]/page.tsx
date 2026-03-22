@@ -2,9 +2,9 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getOrderById, updateOrderStatus } from "@/lib/storage";
-import QRCode from "@/components/QRCode";
-import type { Order } from "@/types";
+import { getOrderById, updateOrderStatus } from "@/app/lib/storage";
+import QRCode from "@/app/components/QRCode";
+import type { Order } from "@/app/types";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("id-ID", {
@@ -83,11 +83,7 @@ export default function PaymentPage() {
         <QRCode />
 
         <div style={{ marginTop: 28 }}>
-          <button
-            className="btn btn-primary btn-lg btn-block"
-            onClick={handlePayment}
-            disabled={processing}
-          >
+          <button className="btn btn-primary btn-lg btn-block" onClick={handlePayment} disabled={processing}>
             {processing ? "Memproses Pembayaran..." : "💳 Simulasi Pembayaran"}
           </button>
         </div>

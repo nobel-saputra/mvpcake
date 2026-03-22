@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getOrders } from "@/lib/storage";
-import StatusBadge from "@/components/StatusBadge";
-import type { Order } from "@/types";
-
+import { getOrders } from "@/app/lib/storage";
+import StatusBadge from "@/app/components/StatusBadge";
+import type { Order } from "@/app/types";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "-";
@@ -32,15 +31,9 @@ export default function AdminDashboard() {
   if (loading) return <div className="loading">Memuat...</div>;
 
   const totalOrders = orders.length;
-  const paidOrders = orders.filter(
-    (o) => o.status !== "pending_payment"
-  ).length;
-  const readyOrders = orders.filter(
-    (o) => o.status === "ready_for_pickup"
-  ).length;
-  const completedOrders = orders.filter(
-    (o) => o.status === "completed"
-  ).length;
+  const paidOrders = orders.filter((o) => o.status !== "pending_payment").length;
+  const readyOrders = orders.filter((o) => o.status === "ready_for_pickup").length;
+  const completedOrders = orders.filter((o) => o.status === "completed").length;
 
   return (
     <div className="admin-page">
@@ -87,10 +80,7 @@ export default function AdminDashboard() {
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr
-                  key={order.id}
-                  onClick={() => router.push(`/admin/order/${order.id}`)}
-                >
+                <tr key={order.id} onClick={() => router.push(`/admin/order/${order.id}`)}>
                   <td style={{ fontWeight: 600, fontSize: 13 }}>{order.id}</td>
                   <td>{order.customerName}</td>
                   <td>{order.customerPhone}</td>

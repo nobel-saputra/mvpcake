@@ -1,4 +1,4 @@
-import { Order, OrderStatus } from "@/types";
+import { Order, OrderStatus } from "@/app/types";
 
 const ORDERS_KEY = "sweetcake_orders";
 
@@ -24,10 +24,7 @@ export function getOrderById(orderId: string): Order | null {
   return orders.find((o) => o.id === orderId) ?? null;
 }
 
-export function updateOrderStatus(
-  orderId: string,
-  status: OrderStatus
-): Order | null {
+export function updateOrderStatus(orderId: string, status: OrderStatus): Order | null {
   const orders = getOrders();
   const index = orders.findIndex((o) => o.id === orderId);
   if (index === -1) return null;

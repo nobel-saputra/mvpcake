@@ -3,9 +3,9 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getOrderById, updateOrderStatus } from "@/lib/storage";
-import StatusBadge from "@/components/StatusBadge";
-import type { Order, OrderStatus } from "@/types";
+import { getOrderById, updateOrderStatus } from "@/app/lib/storage";
+import StatusBadge from "@/app/components/StatusBadge";
+import type { Order, OrderStatus } from "@/app/types";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("id-ID", {
@@ -52,10 +52,7 @@ export default function AdminOrderDetail() {
       <div className="not-found">
         <h2>Pesanan tidak ditemukan</h2>
         <p>Order ID yang Anda cari tidak valid.</p>
-        <button
-          className="btn btn-primary"
-          onClick={() => router.push("/admin")}
-        >
+        <button className="btn btn-primary" onClick={() => router.push("/admin")}>
           Kembali ke Dashboard
         </button>
       </div>
@@ -106,9 +103,7 @@ export default function AdminOrderDetail() {
           </div>
           <div className="detail-item">
             <label>Total</label>
-            <span style={{ color: "var(--primary)", fontWeight: 700 }}>
-              {formatPrice(order.totalPrice)}
-            </span>
+            <span style={{ color: "var(--primary)", fontWeight: 700 }}>{formatPrice(order.totalPrice)}</span>
           </div>
           <div className="detail-item">
             <label>Tanggal Ambil</label>
@@ -128,25 +123,13 @@ export default function AdminOrderDetail() {
         </div>
 
         <div className="status-actions">
-          <button
-            className="btn btn-info"
-            disabled={order.status === "processing"}
-            onClick={() => handleStatusChange("processing")}
-          >
+          <button className="btn btn-info" disabled={order.status === "processing"} onClick={() => handleStatusChange("processing")}>
             🔄 Processing
           </button>
-          <button
-            className="btn btn-warning"
-            disabled={order.status === "ready_for_pickup"}
-            onClick={() => handleStatusChange("ready_for_pickup")}
-          >
+          <button className="btn btn-warning" disabled={order.status === "ready_for_pickup"} onClick={() => handleStatusChange("ready_for_pickup")}>
             📦 Ready for Pickup
           </button>
-          <button
-            className="btn btn-success"
-            disabled={order.status === "completed"}
-            onClick={() => handleStatusChange("completed")}
-          >
+          <button className="btn btn-success" disabled={order.status === "completed"} onClick={() => handleStatusChange("completed")}>
             ✅ Completed
           </button>
         </div>

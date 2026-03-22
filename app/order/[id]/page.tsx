@@ -3,9 +3,9 @@
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import { getCakeById } from "@/data/cakes";
-import { saveOrder, generateOrderId } from "@/lib/storage";
-import type { Order } from "@/types";
+import { getCakeById } from "@/app/data/cakes";
+import { saveOrder, generateOrderId } from "@/app/lib/storage";
+import type { Order } from "@/app/types";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("id-ID", {
@@ -44,9 +44,7 @@ export default function OrderPage() {
 
   const totalPrice = cake.price * (Number(form.quantity) || 1);
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
@@ -92,13 +90,7 @@ export default function OrderPage() {
 
       <div className="form-card">
         <div className="selected-cake">
-          <Image
-            src={cake.image}
-            alt={cake.name}
-            width={80}
-            height={80}
-            style={{ borderRadius: 10, objectFit: "cover" }}
-          />
+          <Image src={cake.image} alt={cake.name} width={80} height={80} style={{ borderRadius: 10, objectFit: "cover" }} />
           <div className="selected-cake-info">
             <h3>{cake.name}</h3>
             <p>{formatPrice(cake.price)}</p>
@@ -108,94 +100,42 @@ export default function OrderPage() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="customerName">Nama Lengkap</label>
-            <input
-              type="text"
-              id="customerName"
-              name="customerName"
-              placeholder="Masukkan nama lengkap"
-              value={form.customerName}
-              onChange={handleChange}
-              required
-            />
+            <input type="text" id="customerName" name="customerName" placeholder="Masukkan nama lengkap" value={form.customerName} onChange={handleChange} required />
           </div>
 
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="customerPhone">Nomor HP</label>
-              <input
-                type="tel"
-                id="customerPhone"
-                name="customerPhone"
-                placeholder="08xxxxxxxxxx"
-                value={form.customerPhone}
-                onChange={handleChange}
-                required
-              />
+              <input type="tel" id="customerPhone" name="customerPhone" placeholder="08xxxxxxxxxx" value={form.customerPhone} onChange={handleChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="customerEmail">Email</label>
-              <input
-                type="email"
-                id="customerEmail"
-                name="customerEmail"
-                placeholder="email@contoh.com"
-                value={form.customerEmail}
-                onChange={handleChange}
-                required
-              />
+              <input type="email" id="customerEmail" name="customerEmail" placeholder="email@contoh.com" value={form.customerEmail} onChange={handleChange} required />
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="quantity">Jumlah</label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                value={form.quantity}
-                onChange={handleChange}
-                required
-              />
+              <input type="number" id="quantity" name="quantity" min="1" value={form.quantity} onChange={handleChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="pickupDate">Tanggal Pengambilan</label>
-              <input
-                type="date"
-                id="pickupDate"
-                name="pickupDate"
-                min={minDate}
-                value={form.pickupDate}
-                onChange={handleChange}
-                required
-              />
+              <input type="date" id="pickupDate" name="pickupDate" min={minDate} value={form.pickupDate} onChange={handleChange} required />
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="notes">Catatan Tambahan (opsional)</label>
-            <textarea
-              id="notes"
-              name="notes"
-              placeholder="Contoh: Tulis nama di kue, tanpa kacang, dsb."
-              value={form.notes}
-              onChange={handleChange}
-            />
+            <textarea id="notes" name="notes" placeholder="Contoh: Tulis nama di kue, tanpa kacang, dsb." value={form.notes} onChange={handleChange} />
           </div>
 
           <div style={{ textAlign: "right", marginTop: 8 }}>
             <p style={{ fontSize: 14, color: "var(--text-muted)", margin: "0 0 4px" }}>Total Harga</p>
-            <p style={{ fontSize: 22, fontWeight: 700, color: "var(--primary)", margin: "0 0 16px" }}>
-              {formatPrice(totalPrice)}
-            </p>
+            <p style={{ fontSize: 22, fontWeight: 700, color: "var(--primary)", margin: "0 0 16px" }}>{formatPrice(totalPrice)}</p>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary btn-lg btn-block"
-            disabled={submitting}
-          >
+          <button type="submit" className="btn btn-primary btn-lg btn-block" disabled={submitting}>
             {submitting ? "Memproses..." : "Lanjut ke Pembayaran"}
           </button>
         </form>

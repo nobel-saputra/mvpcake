@@ -1,9 +1,6 @@
-import { OrderStatus } from "@/types";
+import { OrderStatus } from "@/app/types";
 
-const statusConfig: Record<
-  OrderStatus,
-  { label: string; className: string }
-> = {
+const statusConfig: Record<OrderStatus, { label: string; className: string }> = {
   pending_payment: {
     label: "Menunggu Pembayaran",
     className: "badge-pending",

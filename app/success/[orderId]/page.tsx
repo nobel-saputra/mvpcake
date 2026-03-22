@@ -2,8 +2,8 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getOrderById } from "@/lib/storage";
-import type { Order } from "@/types";
+import { getOrderById } from "@/app/lib/storage";
+import type { Order } from "@/app/types";
 import Link from "next/link";
 
 function formatPrice(price: number): string {
@@ -86,11 +86,7 @@ export default function SuccessPage() {
       <div className="instruction-box">
         <h4>📍 Instruksi Pengambilan</h4>
         <p>
-          Silakan datang ke toko kami pada tanggal{" "}
-          <strong>{formatDate(order.pickupDate)}</strong> untuk mengambil pesanan
-          Anda. Tunjukkan Order ID <strong>{order.id}</strong> kepada kasir saat
-          pengambilan. Pastikan untuk datang pada jam operasional toko (09.00 -
-          20.00 WIB).
+          Silakan datang ke toko kami pada tanggal <strong>{formatDate(order.pickupDate)}</strong> untuk mengambil pesanan Anda. Tunjukkan Order ID <strong>{order.id}</strong> kepada kasir saat pengambilan. Pastikan untuk datang pada jam operasional toko (09.00 - 20.00 WIB).
         </p>
       </div>
 

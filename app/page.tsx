@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { cakes } from "@/data/cakes";
+import { cakes } from "@/app/data/cakes";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("id-ID", {
@@ -24,13 +24,7 @@ export default function HomePage() {
         {cakes.map((cake) => (
           <div key={cake.id} className="cake-card">
             <div className="cake-image-wrapper">
-              <Image
-                src={cake.image}
-                alt={cake.name}
-                width={600}
-                height={400}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <Image src={cake.image} alt={cake.name} width={600} height={400} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <div className="cake-info">
               <h3 className="cake-name">{cake.name}</h3>
