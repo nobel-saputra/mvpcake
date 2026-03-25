@@ -3,7 +3,7 @@ import { Cake } from "@/app/types";
 export const cakes: Cake[] = [
   {
     id: "red-velvet",
-    name: "Red Velvet Cake",
+    name: "Red Velveto Cake",
     description: "Kue lembut berwarna merah dengan cream cheese frosting yang creamy dan lezat.",
     price: 185000,
     image: "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600&h=400&fit=crop",
